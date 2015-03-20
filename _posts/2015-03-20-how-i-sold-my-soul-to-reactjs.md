@@ -43,7 +43,7 @@ I won't go deep into those points since they have been thorougly discussed elsew
 It doesn't really matter what tools or the amount of them you use, if you can scale with little or no pain at all then you won at life.
 When fully leveraging ReactJS, the heavy lifting happens at the very beginning when setting up the Flux structure (stores, actions, constants, registering listeners, formatting data, wiring http resources, etc). Once you get this sorted out you can throw as many features as you want with confidence that nothing will break out of blue, and that performance will likely stay the same.
 
-For the sake of having something to compare ReactJS with let's pick AngularJS since I've use it to build toy applications. I spent a good amount of time reading and learning, and I loved it. But the butterflies in my stomach didn't last for too long because its way of doing things. It's not a big deal, yet it keeps bugging me everytime:
+For the sake of having something to compare ReactJS with let's pick AngularJS since I've use it to build toy applications. I spent a good amount of time reading and learning, and I loved it. But the butterflies in my stomach didn't last for too long because its way of doing things. It's not a big deal, yet it bugs me everytime:
 
 * Nesting directives can be problematic due to scopes.
 
