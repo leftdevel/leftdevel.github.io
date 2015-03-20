@@ -7,7 +7,7 @@ categories: reactjs
 
 ###TL;DR
 
-This is a quick introduction to my experience with ReactJS. I won't showcase any code today, however I believe it's worth reading, especially if you are unsure about giving ReactJS a go. Let's get started.
+This is a quick introduction about my experience with ReactJS. I won't showcase any code today, however I believe it's worth reading, especially if you are unsure about giving ReactJS a go. Let's get started.
 
 If you are like me, you've probably considered selling your soul many times. Due to the global economic crisis you should either keep it or try to sell it soon. If you choose the later, I'll tell you how I sold mine to ReactJS.
 
