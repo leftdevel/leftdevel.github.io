@@ -51,7 +51,7 @@ For the sake of having something to compare ReactJS with let's pick AngularJS si
 
 * You have to keep an eye on digest cyles, otherwise you can compromise the app performance.
 
-The first point is about maintenance, the others are performance related, and they all will be patiently waiting for the right moment to get in your way. ReactJS doesn't really suffer from any of those gotchas. Even though React will traverse the entire DOM, it is only to look for where to mount your components. The number of mounting nodes are quite limited in practice, and it's not even close to what happens on AngularJS initial run. However AngularJS has some neat features like services, filters, routing, http agent, form validation and everything you need to start prototyping in no time.
+The first point is about maintenance, the others are performance related, and they all will be patiently waiting for the right moment to get in your way. ReactJS doesn't really suffer from any of those gotchas. Even though ReactJS will traverse the entire DOM, it is only to look for where to mount your components. The number of mounting nodes are quite limited in practice, and it's not even close to what happens on AngularJS initial run. However AngularJS has some neat features like services, filters, routing, http agent, form validation and everything you need to start prototyping in no time.
 
 Anyway, this post isn't about ReactJS vs AngularJS, and most of those AngularJS gotchas have workarounds.
 
