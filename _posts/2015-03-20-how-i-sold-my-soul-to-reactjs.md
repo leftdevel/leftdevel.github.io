@@ -2,10 +2,11 @@
 layout: post
 title:  "How I sold my soul to ReactJS"
 date:   2015-03-20 15:20:00
-categories: reactjs
+categories: reactjs introduction
 ---
+<a name="tldr"></a>
 
-###TL;DR
+# TL;DR [#](#tldr)
 
 This is a quick introduction about my experience with ReactJS. I won't showcase any code today, however I believe it's worth reading, especially if you are unsure about giving ReactJS a go. Let's get started.
 
@@ -17,7 +18,9 @@ What a mind blowing quote. Of course Facebook is also using PHP for their backen
 
 What if I told you that you're likely to have experienced ReactJS already without writing a single line of code? If you have a Facebook account and you've used any comment thread since 2011 then you did. Isn't it nice how destiny is working ony you?
 
-###Advantages
+<a name="advantages"></a>
+
+# Advantages [#](#advantages)
 
 * It has been battle tested.
 
@@ -39,7 +42,10 @@ What if I told you that you're likely to have experienced ReactJS already withou
 
 I won't go deep into those points since they have been thorougly discussed elsewhere. But I'll stop for a moment on...
 
-### Scaling
+<a name="scaling"></a>
+
+# Scaling [#](#scaling)
+
 It doesn't really matter what tools or the amount of them you use, if you can scale with little or no pain at all then you won at life.
 When fully leveraging ReactJS, the heavy lifting happens at the very beginning when setting up the Flux structure (stores, actions, constants, registering listeners, formatting data, wiring http resources, etc). Once you get this sorted out you can throw as many features as you want with confidence that nothing will break out of blue, and that performance will likely stay the same.
 
@@ -57,7 +63,10 @@ Anyway, this post isn't about ReactJS vs AngularJS, and most of those AngularJS 
 
 In my opinion, the key factor to choose ReactJS over most JS frameworks/libs out there is its power to scale, forget about people claiming it's easier to learn than the competitors, it certainly is in a narrow scope but you will find out it's equally challenging once you have to do production-ready SPAs; you will have to learn how the Flux architecture works in order to avoid polluting components with business logic, and that will add up difficulty to the whole learning process. However it will eventually get easy to reason about once you've spent a couple of days with it. Remember, nothing that is too easy to learn and implement will scale well (think of jQuery). Also things don't have to be more complicated than needed (think of [Java Server Faces][JSF]). I find in ReactJS & Flux a well balanced investment with a solid return rate. Don't take my word only, a lot of popular [companies][companies] are making the switch.
 
-###Even ReactJS isn't all about rainbows and unicorns.
+<a name="reactjs-isnot-all-about"></a>
+
+# Even ReactJS isn't all about rainbows and unicorns. [#](#reactjs-isnot-all-about)
+
 The AngularJS and EmberJS team recently announced they will be implementing a virtual DOM in the future. In fact, this technique is nothing that cannot be implemented elsewhere. So we, the advocates, won't be bragging about its performance for too long.
 
 Also, before you decide to sell your soul to ReactJS you must be aware of the bad and ugly things, those nobody likes to talk about:
@@ -77,6 +86,10 @@ Also, before you decide to sell your soul to ReactJS you must be aware of the ba
 * Although rendering a component on the server is trivial, you are pretty limited to simple components. Trying to render a Flux application becomes near impossible unless you manage to sync and transfer the server app state to the client app state somehow.
 
 If you see it from a different perspective though, those things that ReactJS lacks of can be an advantage too. It means its core stays compact and it will try its best to do one and only one thing which is handling the view efficiently.
+
+<a name="conclusion"></a>
+
+# Conclusion [#](#conclusion)
 
 I'll bet my piggy bank on ReactJS and stick with it because it's easy to reason about, there is no magic going under the hood, easy to debug, test, maintain and scale.
 

@@ -128,7 +128,8 @@ code {
     font-size: 15px;
     border: 1px solid $grey-color-light;
     border-radius: 3px;
-    background-color: #eef;
+    background-color: $code-background-color; // #eef;
+    font-family: $code-font-family;
 }
 
 code {
@@ -199,4 +200,19 @@ pre {
             fill: $grey-color;
         }
     }
+}
+
+/**
+* Anchors
+*/
+
+h1 a, h1 a:visited {
+    color: $grey-color-light;
+    text-decoration: none;
+}
+
+
+h1:hover a {
+    color: $brand-color;
+    text-decoration: underline;
 }
