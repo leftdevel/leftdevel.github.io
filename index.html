@@ -14,7 +14,7 @@ layout: default
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h2>
-        {% assign content = post.content | split: "</h1>" %}{% assign content = content[1] | split: "</p>" %}{% assign summary = content[0] | prepend: "</p>" %}{{ summary }}
+        {% assign content = post.content | split: "</h1>" %}{% assign content = content[1] | split: "</p>" %}{% assign summary = content[0] | append: "</p>" %}{{ summary }}
       </li>
     {% endfor %}
   </ul>
