@@ -4,15 +4,11 @@ title:  "How I sold my soul to ReactJS"
 date:   2015-03-20 15:20:00
 categories: reactjs introduction
 ---
-<a id="tldr"></a>
-
-### TL;DR [#](#tldr)
-
 This is a quick introduction about my experience with ReactJS. I won't showcase any code today, however I believe it's worth reading, especially if you are unsure about giving ReactJS a go. Let's get started.
 
 If you are like me, you've probably considered selling your soul many times. Due to the global economic crisis you should either keep it or try to sell it soon. If you choose the later, I'll tell you how I sold mine to ReactJS.
 
->    ...Angular, a popular JS framework from Google, isn't used on Google's flagship client-side applications (Google+, Gmail, and Docs use Closure). Few other libraries or frameworks besides jQuery and Closure have been as battle-tested as React. ([Pete Hunt][quora])
+> ...Angular, a popular JS framework from Google, isn't used on Google's flagship client-side applications (Google+, Gmail, and Docs use Closure). Few other libraries or frameworks besides jQuery and Closure have been as battle-tested as React. ([Pete Hunt][quora])
 
 What a mind blowing quote. Of course Facebook is also using PHP for their backend but that doesn't mean PHP is the best programing language ever. However, there is a clear difference between using whatever tool I like and keeping my mouth closed vs promoting a tool I hardly use. It's like preaching a christian god to my neighbors, but praying to a hindu one at home.
 

@@ -4,10 +4,6 @@ title:  "ReactJS Props vs State Best Practices"
 date:   2015-03-25 04:20:00
 categories: reactjs tutorial props state best practices
 ---
-<a id="tldr"></a>
-
-### TL;DR [#](#tldr)
-
 Misusing props & state is a guaranteed bomb of bugs that will cost you a lot of time to fix. In an app with few hundreds of lines of code the danger is not that visible, but once your  project grows the issues and headaches will strike all at once.
 
 You will start seeing things behaving in unexpected ways, errors will become hard to reproduce. Funnily enough ReactJS's purpose is to rescue us from all those issues that we suffered with other JS libraries.
