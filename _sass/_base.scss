@@ -206,13 +206,13 @@ pre {
 * Anchors
 */
 
-h1 a, h1 a:visited {
+h3 a, h3 a:visited {
     color: $grey-color-light;
     text-decoration: none;
 }
 
 
-h1:hover a {
+h3:hover a {
     color: $brand-color;
     text-decoration: underline;
 }

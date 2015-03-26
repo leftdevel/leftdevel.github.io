@@ -6,7 +6,7 @@ categories: reactjs introduction
 ---
 <a id="tldr"></a>
 
-# TL;DR [#](#tldr)
+### TL;DR [#](#tldr)
 
 This is a quick introduction about my experience with ReactJS. I won't showcase any code today, however I believe it's worth reading, especially if you are unsure about giving ReactJS a go. Let's get started.
 
@@ -20,7 +20,7 @@ What if I told you that you're likely to have experienced ReactJS already withou
 
 <a id="advantages"></a>
 
-# Advantages [#](#advantages)
+### Advantages [#](#advantages)
 
 * It has been battle tested.
 
@@ -44,7 +44,7 @@ I won't go deep into those points since they have been thorougly discussed elsew
 
 <a id="scaling"></a>
 
-# Scaling [#](#scaling)
+### Scaling [#](#scaling)
 
 It doesn't really matter what tools or the amount of them you use, if you can scale with little or no pain at all then you won at life.
 When fully leveraging ReactJS, the heavy lifting happens at the very beginning when setting up the Flux structure (stores, actions, constants, registering listeners, formatting data, wiring http resources, etc). Once you get this sorted out you can throw as many features as you want with confidence that nothing will break out of blue, and that performance will likely stay the same.
@@ -65,7 +65,7 @@ In my opinion, the key factor to choose ReactJS over most JS frameworks/libs out
 
 <a id="reactjs-isnot-all-about"></a>
 
-# Even ReactJS isn't all about rainbows and unicorns. [#](#reactjs-isnot-all-about)
+### Even ReactJS isn't all about rainbows and unicorns. [#](#reactjs-isnot-all-about)
 
 The AngularJS and EmberJS team recently announced they will be implementing a virtual DOM in the future. In fact, this technique is nothing that cannot be implemented elsewhere. So we, the advocates, won't be bragging about its performance for too long.
 
@@ -89,7 +89,7 @@ If you see it from a different perspective though, those things that ReactJS lac
 
 <a id="conclusion"></a>
 
-# Conclusion [#](#conclusion)
+### Conclusion [#](#conclusion)
 
 I'll bet my piggy bank on ReactJS and stick with it because it's easy to reason about, there is no magic going under the hood, easy to debug, test, maintain and scale.
 

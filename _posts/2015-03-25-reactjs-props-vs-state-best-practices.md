@@ -6,7 +6,7 @@ categories: reactjs tutorial props state best practices
 ---
 <a id="tldr"></a>
 
-# TL;DR [#](#tldr)
+### TL;DR [#](#tldr)
 
 Misusing props & state is a guaranteed bomb of bugs that will cost you a lot of time to fix. In an app with few hundreds of lines of code the danger is not that visible, but once your  project grows the issues and headaches will strike all at once.
 
@@ -16,7 +16,7 @@ When I started learning ReactJS the first thing that made me scratch my head was
 
 <a id="a-simple-example"></a>
 
-# A Simple Example [#](#a-simple-example)
+### A Simple Example [#](#a-simple-example)
 
 We'll see why it's so easy to get confused. The following snippet is a slight modification of the first example in the ReactJS [landing page][landing_page],
 but instead of a HelloMessage component we will use a Counter:
@@ -57,7 +57,7 @@ I believe the confusion occurs because oversimplification. I won't blame it on t
 
 <a id="tweet-list-component"></a>
 
-# TweetList Component [#](#tweet-list-component)
+### TweetList Component [#](#tweet-list-component)
 
 We'll build a TweetList component and a tweet impressions Counter little by little, so we can see why and when to use props & state. Let's justify the need for a Counter component by saying we want it to spell out the number of impressions, so for instance if we pass '1' it will display 'one', and so on.
 Our first attempt will be to build our components without the help of props nor state.
@@ -197,7 +197,7 @@ Tip: Although technically there's nothing wrong about executing an ajax request 
 
 <a id="unread-messages-count-component"></a>
 
-# UnreadMessagesCount Component [#](#unread-messages-count-component)
+### UnreadMessagesCount Component [#](#unread-messages-count-component)
 
 Remember I said both versions of Counter were right or wrong depending on the context? We already built a Counter that relies solely on props, let's see when it would make sense to use state.
 
@@ -265,7 +265,7 @@ For instance MessageList would also subscribe to messageStore to listen for chan
 
 <a id="conclusion"></a>
 
-# Conclusion [#](#conclusion)
+### Conclusion [#](#conclusion)
 
 What we learned so far might not be _that_ useful for you unless you are new to ReactJS. I'll make it more intersting by showcasing a Twitter clone in a later stage. Upcoming posts will introduce other topics that will be the foundation for the final tutorial. If you are finding issues to run the snippets let me know in the comments and I'll be glad to help you out.
 
