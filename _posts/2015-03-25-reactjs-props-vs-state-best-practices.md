@@ -248,8 +248,8 @@ var mountNode = document.getElementById("counter-mount-node");
 React.render(<UnreadMessagesCounter />, mountNode);
 
 $(document).ready(function() {
-    messageStore.loadLatestMessagesAndNotifyListeners();
-    setInterval(messageStore.loadLatestMessagesAndNotifyListeners, 5000);
+    messageStore.loadMessagesAndEmitChange();
+    setInterval(messageStore.loadMessagesAndEmitChange, 5000);
 });
 
 {% endhighlight %}
@@ -259,7 +259,7 @@ in it, we leave that for an hypothetical messageStore. This how the store would 
 
 * It is the only channel for retrieving the list of messages (single source of truth).
 * It let components to subscribe to any messages update event, so they can pull the latest list. This will be possible by registering a callback to its `addChangeListener` method.
-* Its method `loadLatestMessagesAndNotifyListeners` will be executed every 5 seconds after the page has loaded.
+* Its method `loadMessagesAndEmitChange` will be executed every 5 seconds after the page has loaded.
 
 For instance MessageList would also subscribe to messageStore to listen for changes. But I won't waste your time by going through the MessageList component code since it's practically the same as TweetList. I'll omit the store code to avoid straying away from the main topic. But don't worry, I'll pay my debt to you in an upcoming post with a more robust approach for stores.
 
