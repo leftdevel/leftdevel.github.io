@@ -224,24 +224,24 @@ As you can see, the Counter will be a controller-view by itself since it is the 
 
 {% highlight js %}
 var UnreadMessagesCounter = React.createClass({
-    getInitialState: function() {
-      return {count: 0};
-    },
+  getInitialState: function() {
+    return {count: 0};
+  },
 
-    componentDidMount: function() {
-      messageStore.addChangeListener(this.onMessagesChanged);
-    },
+  componentDidMount: function() {
+    messageStore.addChangeListener(this.onMessagesChanged);
+  },
 
-    onMessagesChanged: function() {
-        var count = messageStore.getUnreadMessagesCount();
-        this.setState({count: count});
-    },
+  onMessagesChanged: function() {
+      var count = messageStore.getUnreadMessagesCount();
+      this.setState({count: count});
+  },
 
-    render: function() {
-      return (
-            <span>You have {this.state.count} unread messages</span>
-        );
-    }
+  render: function() {
+    return (
+      <span>You have {this.state.count} unread messages</span>
+    );
+  }
 });
 
 var mountNode = document.getElementById("counter-mount-node");
