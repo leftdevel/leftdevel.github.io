@@ -4,7 +4,7 @@ title:  "ReactJS Props vs State Best Practices"
 date:   2015-03-25 04:20:00
 categories: reactjs tutorial props state best practices
 ---
-<a name="tldr"></a>
+<a id="tldr"></a>
 
 # TL;DR [#](#tldr)
 
@@ -14,7 +14,7 @@ You will start seeing things behaving in unexpected ways, errors will become har
 
 When I started learning ReactJS the first thing that made me scratch my head was deciding between passing data to a component via its props, or making the component to read what it needed from a data source and store it in its state. I underestimated the potential issues of not using them properly.
 
-<a name="a-simple-example"></a>
+<a id="a-simple-example"></a>
 
 # A Simple Example [#](#a-simple-example)
 
@@ -55,7 +55,7 @@ Which one is the evil twin? Which one will peck out your eyes once your project 
 
 I believe the confusion occurs because oversimplification. I won't blame it on the ReactJS examples, they are a really good starting point. But without any surrounding context it's pretty hard to tell which one we should use. The first and obvious thing to do is to ask ourselves what will be the purpose of Counter. Are we going to use it to display the number of impressions for a tweet, or a message counter in a navbar like Facebook does?
 
-<a name="tweet-list-component"></a>
+<a id="tweet-list-component"></a>
 
 # TweetList Component [#](#tweet-list-component)
 
@@ -195,7 +195,7 @@ we are telling it to execute a jQuery ajax request to fetch the latest tweets an
 
 Tip: Although technically there's nothing wrong about executing an ajax request within the TweetList component, it's better to move business logic elsewhere, e.g. stores. But let's keep it this way for brevity.
 
-<a name="unread-messages-count-component"></a>
+<a id="unread-messages-count-component"></a>
 
 # UnreadMessagesCount Component [#](#unread-messages-count-component)
 
@@ -263,10 +263,10 @@ in it, we leave that for an hypothetical messageStore. This how the store would 
 
 For instance MessageList would also subscribe to messageStore to listen for changes. But I won't waste your time by going through the MessageList component code since it's practically the same as TweetList. I'll omit the store code to avoid straying away from the main topic. But don't worry, I'll pay my debt to you in an upcoming post with a more robust approach for stores.
 
-<a name="conclusion"></a>
+<a id="conclusion"></a>
 
 # Conclusion [#](#conclusion)
 
 What we learned so far might not be _that_ useful for you unless you are new to ReactJS. I'll make it more intersting by showcasing a Twitter clone in a later stage. Upcoming posts will introduce other topics that will be the foundation for the final tutorial. If you are finding issues to run the snippets let me know in the comments and I'll be glad to help you out.
 
-[landing_page]: [http://facebook.github.io/react/index.html]
+[landing_page]: http://facebook.github.io/react/index.html

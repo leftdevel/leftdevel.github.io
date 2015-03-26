@@ -4,7 +4,7 @@ title:  "How I sold my soul to ReactJS"
 date:   2015-03-20 15:20:00
 categories: reactjs introduction
 ---
-<a name="tldr"></a>
+<a id="tldr"></a>
 
 # TL;DR [#](#tldr)
 
@@ -18,7 +18,7 @@ What a mind blowing quote. Of course Facebook is also using PHP for their backen
 
 What if I told you that you're likely to have experienced ReactJS already without writing a single line of code? If you have a Facebook account and you've used any comment thread since 2011 then you did. Isn't it nice how destiny is working ony you?
 
-<a name="advantages"></a>
+<a id="advantages"></a>
 
 # Advantages [#](#advantages)
 
@@ -42,7 +42,7 @@ What if I told you that you're likely to have experienced ReactJS already withou
 
 I won't go deep into those points since they have been thorougly discussed elsewhere. But I'll stop for a moment on...
 
-<a name="scaling"></a>
+<a id="scaling"></a>
 
 # Scaling [#](#scaling)
 
@@ -63,7 +63,7 @@ Anyway, this post isn't about ReactJS vs AngularJS, and most of those AngularJS 
 
 In my opinion, the key factor to choose ReactJS over most JS frameworks/libs out there is its power to scale, forget about people claiming it's easier to learn than the competitors, it certainly is in a narrow scope but you will find out it's equally challenging once you have to do production-ready SPAs; you will have to learn how the Flux architecture works in order to avoid polluting components with business logic, and that will add up difficulty to the whole learning process. However it will eventually get easy to reason about once you've spent a couple of days with it. Remember, nothing that is too easy to learn and implement will scale well (think of jQuery). Also things don't have to be more complicated than needed (think of [Java Server Faces][JSF]). I find in ReactJS & Flux a well balanced investment with a solid return rate. Don't take my word only, a lot of popular [companies][companies] are making the switch.
 
-<a name="reactjs-isnot-all-about"></a>
+<a id="reactjs-isnot-all-about"></a>
 
 # Even ReactJS isn't all about rainbows and unicorns. [#](#reactjs-isnot-all-about)
 
@@ -87,7 +87,7 @@ Also, before you decide to sell your soul to ReactJS you must be aware of the ba
 
 If you see it from a different perspective though, those things that ReactJS lacks of can be an advantage too. It means its core stays compact and it will try its best to do one and only one thing which is handling the view efficiently.
 
-<a name="conclusion"></a>
+<a id="conclusion"></a>
 
 # Conclusion [#](#conclusion)
 
