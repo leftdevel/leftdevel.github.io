@@ -1,6 +1,6 @@
 # Site settings
 title: LeftDevel
-email: oscar@leftdevel.com
+email: leftdevel@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Oscar's blog about web technologies and stuff.
 baseurl: "" # the subpath of your site, e.g. /blog/
