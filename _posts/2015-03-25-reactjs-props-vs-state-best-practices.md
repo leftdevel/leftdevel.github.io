@@ -263,6 +263,6 @@ For instance MessageList would also subscribe to messageStore to listen for chan
 
 ### Conclusion [#](#conclusion)
 
-What we learned so far might not be _that_ useful for you unless you are new to ReactJS. I'll make it more intersting by showcasing a Twitter clone in a later stage. Upcoming posts will introduce other topics that will be the foundation for the final tutorial. If you are finding issues to run the snippets let me know in the comments and I'll be glad to help you out.
+What we learned so far might not be _that_ useful for you unless you are new to ReactJS. I'll make it more interesting by showcasing a Twitter clone in a later stage, or maybe something even more exciting, I'll make a decision in a day or two. Upcoming posts will introduce other topics that will be the foundation for the final tutorial. If you are finding issues to run the snippets let me know in the comments and I'll be glad to help you out.
 
 [landing_page]: http://facebook.github.io/react/index.html
