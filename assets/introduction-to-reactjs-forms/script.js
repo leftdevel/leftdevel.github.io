@@ -4,6 +4,13 @@ var Highlight = window.app.Highlight;
 
 // ======== Snippet 1 ========
 var LogInForm1 = React.createClass({displayName: "LogInForm1",
+  render: function() {
+    if (!this.props.isLoggedIn) {
+      return this.getLogInNode();
+    } else {
+      return this.getLogOutNode();
+    }
+  },
   getLogInNode: function() {
     return (
       React.createElement("form", null, 
@@ -15,18 +22,12 @@ var LogInForm1 = React.createClass({displayName: "LogInForm1",
       )
     );
   },
-
   getLogOutNode: function() {
     return (
       React.createElement("div", null, 
-        "Hey John Doe, welcome on board!", 
-        React.createElement("a", {href: "#"}, "Log Out")
+        "Welcome, John Doe. ", React.createElement("a", {href: "#"}, "Log Out")
       )
     );
-  },
-
-  render: function() {
-      return this.getLogInNode();
   }
 });
 
@@ -35,7 +36,7 @@ var code1 = mountNode1.innerHTML;
 
 React.render(
   React.createElement(Highlight, {code: code1}, 
-    React.createElement(LogInForm1, null)
+    React.createElement(LogInForm1, {isLoggedIn: false})
   )
   , mountNode1);
 
@@ -44,21 +45,26 @@ React.render(
 var LogInForm2 = React.createClass({displayName: "LogInForm2",
   getInitialState: function() {
     return {
-      loggedin: false,
+      isLoggedIn: this.props.initialIsLoggedIn,
+      isSubmitting: false,
       username: '',
       password: '',
     };
   },
 
   getLogInNode: function() {
+    var wait = this.state.isSubmitting ? 'Authenticating. Please wait...' : '';
+
     return (
       React.createElement("form", null, 
+        wait, 
         React.createElement("label", null, "Username"), 
 
         React.createElement("input", {
           type: "text", 
           onChange: this._onUsernameChange, 
-          value: this.state.username}
+          value: this.state.username, 
+          disabled: this.state.isSubmitting}
         ), 
 
         React.createElement("label", null, "Password"), 
@@ -66,9 +72,11 @@ var LogInForm2 = React.createClass({displayName: "LogInForm2",
         React.createElement("input", {
           type: "password", 
           onChange: this._onPasswordChange, 
-          value: this.state.password}), 
+          value: this.state.password, 
+          disabled: this.state.isSubmitting}
+        ), 
 
-        React.createElement("button", {onClick: this._logIn}, "Log In")
+        React.createElement("button", {disabled: this.state.isSubmitting, onClick: this._logIn}, "Log In")
       )
     );
   },
@@ -76,36 +84,53 @@ var LogInForm2 = React.createClass({displayName: "LogInForm2",
   getLogOutNode: function() {
     return (
       React.createElement("div", null, 
-        "Hey ", this.state.text, ", welcome on board!", 
-        React.createElement("a", {href: "#", onClick: this._logOut}, "Log Out")
+        "Welcome, John Doe. ", React.createElement("a", {href: "#", onClick: this._logOut}, "Log Out")
       )
     );
   },
 
   render: function() {
-    if (!this.state.loggedin) {
+    if (!this.state.isLoggedIn) {
       return this.getLogInNode();
     } else {
       return this.getLogOutNode();
     }
   },
 
-  _onInputChange: function(event) {
-     this.setState({text: event.target.value});
+  _onUsernameChange: function(event) {
+     this.setState({username: event.target.value});
+  },
+
+  _onPasswordChange: function(event) {
+     this.setState({password: event.target.value});
   },
 
   _logIn: function(event) {
     event.preventDefault();
-    this.setState({loggedin: true});
+    this.setState({isSubmitting: true});
+
+    // Mocking the server authentication request
+    setTimeout(function() {
+      this.setState({isSubmitting: false, isLoggedIn: true});
+    }.bind(this), 2000);
   },
 
   _logOut: function(event) {
     event.preventDefault();
-    this.setState({text: '', loggedin: false});
+    this.setState({username: '', password: '', isLoggedIn: false});
   }
 });
 
-// var mountNode2 = document.getElementById("sample2");
-// React.render(<LogInForm2 />, mountNode2);
+var initialIsLoggedIn = false; // we could pull this info from e.g., a webservice.
+
+var mountNode2 = document.getElementById("sample2");
+var code2 = mountNode2.innerHTML;
+
+React.render(
+  React.createElement(Highlight, {code: code2}, 
+    React.createElement(LogInForm2, {initialIsLoggedIn: initialIsLoggedIn})
+  )
+  , mountNode2);
+
 
 });

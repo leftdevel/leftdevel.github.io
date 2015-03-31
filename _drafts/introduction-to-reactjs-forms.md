@@ -14,12 +14,19 @@ You can easily find yourself having a hard time with forms right from the begini
 
 ### One Problem, Three Solutions [#](#one-problem-three-solutions)
 
-We will build a very simple login form with a few requirements: We enter a username and password, we hit submit, the form hides, we show a success message with a link to logout, which shows the login form again.
+We will build a very simple login form with a few requirements: We enter a username and password, we hit submit, the form hides, we show a success message with a logout link that will switch back to the login form. Let's see the minimum amount of code possible, just enough to see what will be we trying to do.
 
 <div id="sample1">
 {% highlight js %}
 /* Snippet 1 */
 var LogInForm = React.createClass({
+  render: function() {
+    if (!this.props.isLoggedIn) {
+      return this.getLogInNode();
+    } else {
+      return this.getLogOutNode();
+    }
+  },
   getLogInNode: function() {
     return (
       <form>
@@ -34,18 +41,108 @@ var LogInForm = React.createClass({
   getLogOutNode: function() {
     return (
       <div>
-        Hey John Doe, welcome on board!
-        <a href="#">Log Out</a>
+        Welcome, John Doe. <a href="#">Log Out</a>
       </div>
     );
-  },
-  render: function() {
-      return this.getLogInNode();
   }
 });
+
+React.render(<LogInForm isLoggedIn={false} />, mountNode);
 {% endhighlight %}
 </div>
 
-Mark heard we know we love ReactJS, he also tell us all Facebook engineers are busy working on Relay and GraphQL. He want us to do a simple job, to let people to edit a comment with the less amount of effort.
+As we can see, there is not much fun going on. We rely on `isLoggedIn` property to toggle between the Log-In and Log-Out views.
+
+In a real world scenario we would also like to submit the form to a backend server, and while the server is processing our request we would like to show a 'loading' message and disable the Log-In form during that period to avoid re-submitting the form. Not really hard, is it? We can throw all the important info into the component's state, hold my beer:
+
+<div id="sample2">
+{% highlight js %}
+/* Snippet 2 */
+var LogInForm = React.createClass({
+  getInitialState: function() {
+    return {
+      isLoggedIn: this.props.initialIsLoggedIn,
+      isSubmitting: false,
+      username: '',
+      password: '',
+    };
+  },
+
+  getLogInNode: function() {
+    var wait = this.state.isSubmitting ? 'Authenticating. Please wait...' : '';
+
+    return (
+      <form>
+        {wait}
+        <label>Username</label>
+
+        <input
+          type="text"
+          onChange={this._onUsernameChange}
+          value={this.state.username}
+          disabled={this.state.isSubmitting}
+        />
+
+        <label>Password</label>
+
+        <input
+          type="password"
+          onChange={this._onPasswordChange}
+          value={this.state.password}
+          disabled={this.state.isSubmitting}
+        />
+
+        <button disabled={this.state.isSubmitting} onClick={this._logIn}>Log In</button>
+      </form>
+    );
+  },
+
+  getLogOutNode: function() {
+    return (
+      <div>
+        Welcome, John Doe. <a href="#" onClick={this._logOut}>Log Out</a>
+      </div>
+    );
+  },
+
+  render: function() {
+    if (!this.state.isLoggedIn) {
+      return this.getLogInNode();
+    } else {
+      return this.getLogOutNode();
+    }
+  },
+
+  _onUsernameChange: function(event) {
+     this.setState({username: event.target.value});
+  },
+
+  _onPasswordChange: function(event) {
+     this.setState({password: event.target.value});
+  },
+
+  _logIn: function(event) {
+    event.preventDefault();
+    this.setState({isSubmitting: true});
+
+    // Mocking the server authentication request
+    setTimeout(function() {
+      this.setState({isSubmitting: false, isLoggedIn: true});
+    }.bind(this), 2000);
+  },
+
+  _logOut: function(event) {
+    event.preventDefault();
+    this.setState({username: '', password: '', isLoggedIn: false});
+  }
+});
+
+var initialIsLoggedIn = false; // we could pull this info from e.g., a webservice.
+
+React.render(<LogInForm initialIsLoggedIn={initialIsLoggedIn} />, mountNode);
+{% endhighlight %}
+</div>
+
+Mark heard we love ReactJS, he also tell us all Facebook engineers are busy working on Relay and GraphQL. He want us to do a simple job, to let people to edit a comment with the less amount of effort.
 
 {% include js.html %}
