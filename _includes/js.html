@@ -1,0 +1,7 @@
+{% if jekyll.environment == 'development' %}
+<script type="text/javascript" src="/assets/react-with-addons-0.13.1.js"></script>
+{% else %}
+<script type="text/javascript" src="http://fb.me/react-with-addons-0.13.1.min.js"></script>
+{% endif %}
+<script type="text/javascript" src="/assets/script.js"></script>
+<script type="text/javascript" src="{{ page.url | replace_first: "blog","assets" }}/script.js"></script>

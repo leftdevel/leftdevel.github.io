@@ -9,5 +9,6 @@ twitter_username: leftdevel
 github_username:  leftdevel
 
 # Build settings
-markdown: kramdown
+#markdown: kramdown
+markdown: redcarpet
 permalink: /blog/:title

@@ -407,4 +407,58 @@
     .il {
       color: #36958e;
     }
+
+}
+
+
+.tab-panel-group {
+  .panel {
+    display: none;
+
+    &.on {
+      display: block;
+    }
+
+    .demo {
+      width: 100%;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      background-color: white;
+      border: none;
+
+      input, button, label {
+        display: block;
+      }
+
+      form {
+        width: 50%;
+        margin: 0 auto;
+        border: 1px solid #e8e8e8;
+        padding: 10px;
+
+        button {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+
+  .tab {
+    cursor: pointer;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #e8e8e8;
+    border-bottom: none;
+    width: 50%;
+    text-align: center;
+    color: #c2c0bc;
+    font-size: $small-font-size;
+    background-color: #f8f5ec;
+
+    &.on {
+      color: #222;
+    }
+  }
 }
