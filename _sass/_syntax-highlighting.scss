@@ -421,6 +421,7 @@
 
     .demo {
       width: 100%;
+      padding: 20px;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
       background-color: white;
@@ -431,8 +432,6 @@
       }
 
       form {
-        padding: 10px;
-
         button {
           margin-top: 10px;
         }

@@ -3,29 +3,28 @@ document.addEventListener('DOMContentLoaded', function() {
 var Highlight = window.app.Highlight;
 
 // ======== Snippet 1 ========
-var LogInForm1 = React.createClass({
+var Coupon = React.createClass({
   render: function() {
-    if (!this.props.isLoggedIn) {
-      return this.getLogInNode();
+    if (!this.props.isApplied) {
+      return this.getFormNode();
     } else {
-      return this.getLogOutNode();
+      return this.getSuccessNode();
     }
   },
-  getLogInNode: function() {
+  getFormNode: function() {
     return (
       <form>
-        <label>Username</label>
+        <label>Enter Promo Code</label>
         <input type="text" />
-        <label>Password</label>
-        <input type="password" />
-        <button>Log In</button>
+        <button>Apply</button>
       </form>
     );
   },
-  getLogOutNode: function() {
+  getSuccessNode: function() {
     return (
       <div>
-        Welcome, John Doe. <a href="#">Log Out</a>
+        The discount has been applied!
+        <a href="#">Apply Again</a>
       </div>
     );
   }
@@ -36,101 +35,214 @@ var code1 = mountNode1.innerHTML;
 
 React.render(
   <Highlight code={code1} >
-    <LogInForm1 isLoggedIn={false} />
+    <Coupon isApplied={false} />
   </Highlight>
   , mountNode1);
 
 // ========= Snippet 2 ========
 
-var LogInForm2 = React.createClass({
+var Coupon2 = React.createClass({
   getInitialState: function() {
     return {
-      isLoggedIn: this.props.initialIsLoggedIn,
-      isSubmitting: false,
-      username: '',
-      password: '',
+      isApplied: this.props.initialIsApplied,
+      isWaiting: false,
+      promoCode: '',
     };
   },
 
-  getLogInNode: function() {
-    var wait = this.state.isSubmitting ? 'Authenticating. Please wait...' : '';
+  render: function() {
+    if (!this.state.isApplied) {
+      return this.getFormNode();
+    } else {
+      return this.getSuccessNode();
+    }
+  },
+
+  getFormNode: function() {
+    var wait = this.state.isWaiting ? 'Verifying code. Please wait...' : '';
 
     return (
       <form>
         {wait}
-        <label>Username</label>
+        <label>Enter Promo Code</label>
 
         <input
           type="text"
-          onChange={this._onUsernameChange}
-          value={this.state.username}
-          disabled={this.state.isSubmitting}
+          onChange={this._onPromoCodeChange}
+          value={this.state.promoCode}
+          disabled={this.state.isWaiting}
         />
 
-        <label>Password</label>
-
-        <input
-          type="password"
-          onChange={this._onPasswordChange}
-          value={this.state.password}
-          disabled={this.state.isSubmitting}
-        />
-
-        <button disabled={this.state.isSubmitting} onClick={this._logIn}>Log In</button>
+        <button disabled={this.state.isWaiting} onClick={this._apply}>Apply</button>
       </form>
     );
   },
 
-  getLogOutNode: function() {
+  _onPromoCodeChange: function(event) {
+     this.setState({promoCode: event.target.value});
+  },
+
+  _apply: function(event) {
+    event.preventDefault();
+    this.setState({isWaiting: true});
+
+    // Mocking the server verification response
+    setTimeout(function() {
+      this.setState({isWaiting: false, isApplied: true});
+    }.bind(this), 2000);
+  },
+
+  getSuccessNode: function() {
     return (
       <div>
-        Welcome, John Doe. <a href="#" onClick={this._logOut}>Log Out</a>
+        The discount has been applied!&nbsp;
+        <a href="#" onClick={this._applyAgain}>Apply Again</a>
       </div>
     );
   },
 
-  render: function() {
-    if (!this.state.isLoggedIn) {
-      return this.getLogInNode();
-    } else {
-      return this.getLogOutNode();
-    }
-  },
-
-  _onUsernameChange: function(event) {
-     this.setState({username: event.target.value});
-  },
-
-  _onPasswordChange: function(event) {
-     this.setState({password: event.target.value});
-  },
-
-  _logIn: function(event) {
+  _applyAgain: function(event) {
     event.preventDefault();
-    this.setState({isSubmitting: true});
-
-    // Mocking the server authentication request
-    setTimeout(function() {
-      this.setState({isSubmitting: false, isLoggedIn: true});
-    }.bind(this), 2000);
-  },
-
-  _logOut: function(event) {
-    event.preventDefault();
-    this.setState({username: '', password: '', isLoggedIn: false});
+    this.setState({promoCode: '', isApplied: false});
   }
 });
 
-var initialIsLoggedIn = false; // we could pull this info from e.g., a webservice.
+var initialIsApplied = false; // we could pull this info from the backend.
 
 var mountNode2 = document.getElementById("sample2");
 var code2 = mountNode2.innerHTML;
 
 React.render(
   <Highlight code={code2}>
-    <LogInForm2 initialIsLoggedIn={initialIsLoggedIn} />
+    <Coupon2 initialIsApplied={initialIsApplied} />
   </Highlight>
   , mountNode2);
 
+
+// ======== Sample3 ========
+
+var App1 = React.createClass({
+  getInitialState: function() {
+    return {
+      user: {name: 'John Doe'},
+      coupon: {
+        isApplied: this.props.initialIsApplied,
+        isWaiting: false,
+        promoCode: '',
+      }
+    };
+  },
+
+  render: function() {
+    return (
+      <div>
+        <div>
+          Welcome <strong>{this.state.user.name}.</strong>
+        </div>
+        <Coupon2 coupon={this.state.coupon} />
+      </div>
+    );
+  }
+});
+
+var mountNode3 = document.getElementById("sample3");
+var code3 = mountNode3.innerHTML;
+
+React.render(
+  <Highlight code={code3}>
+    <App1 />
+  </Highlight>
+  , mountNode3);
+
+// ======== Sample 4 ========
+
+var Coupon3 = React.createClass({
+  render: function() {
+    if (!this.props.coupon.isApplied) {
+      return this.getFormNode();
+    } else {
+      return this.getSuccessNode();
+    }
+  },
+
+  getFormNode: function() {
+    var wait = this.props.coupon.isWaiting ? 'Verifying code. Please wait...' : '';
+
+    return (
+      <form>
+        {wait}
+        <label>Enter Promo Code</label>
+
+        <input
+          ref="PromoCode"
+          type="text"
+          defaultValue={this.props.coupon.promoCode}
+          disabled={this.props.coupon.isWaiting}
+        />
+
+        <button disabled={this.props.coupon.isWaiting} onClick={this._apply}>Apply</button>
+      </form>
+    );
+  },
+
+  _apply: function(event) {
+    event.preventDefault();
+    var promoCode = React.findDOMNode(this.refs.PromoCode).value;
+    this.props.applyHandler(value);
+
+    // Mocking the server verification response
+    setTimeout(function() {
+      this.setState({isWaiting: false, isApplied: true});
+    }.bind(this), 2000);
+  },
+
+  getSuccessNode: function() {
+    return (
+      <div>
+        The discount has been applied!&nbsp;
+        <a href="#" onClick={this.props.applyAgainHandler}>Apply Again</a>
+      </div>
+    );
+  },
+
+  _applyAgain: function(event) {
+    event.preventDefault();
+    this.setState({promoCode: '', isApplied: false});
+  }
+});
+
+
+var App2 = React.createClass({
+  getInitialState: function() {
+    return {
+      user: {name: 'John Doe'},
+      coupon: {
+        isApplied: this.props.initialIsApplied,
+        isWaiting: false,
+        promoCode: '',
+      }
+    };
+  },
+
+  render: function() {
+    return (
+      <div>
+        <div>
+          Welcome <strong>{this.state.user.name}.</strong>
+        </div>
+        <Coupon2 coupon={this.state.coupon} />
+      </div>
+    );
+  }
+});
+
+var mountNode4 = document.getElementById("sample4");
+var code4 = mountNode4.innerHTML;
+
+React.render(
+  <Highlight code={code4}>
+    <App2 />
+  </Highlight>
+  , mountNode4);
 
 });

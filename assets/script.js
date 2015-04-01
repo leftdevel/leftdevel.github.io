@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         React.createElement(Panel, null, 
                           React.createElement("div", {dangerouslySetInnerHTML: {__html: this.props.code}})
                         ), 
-                        React.createElement(Tab, {label: "Live Preview"}), 
+                        React.createElement(Tab, {label: "Demo"}), 
                         React.createElement(Panel, null, 
                             React.createElement("pre", {className: "demo"}, 
                                 this.props.children

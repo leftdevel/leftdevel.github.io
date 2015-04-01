@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <Panel>
                           <div dangerouslySetInnerHTML={{__html: this.props.code}} />
                         </Panel>
-                        <Tab label="Live Preview" />
+                        <Tab label="Demo" />
                         <Panel>
                             <pre className="demo">
                                 {this.props.children}
