@@ -4,7 +4,7 @@ title:  "Introduction to ReactJS forms"
 date:   2015-03-27 15:20:00
 categories: reactjs state forms
 ---
-Application state vs UI state. Controlled vs uncontrolled components. Abstracting & reusing widgets. Give your forms that shot of steroids right from the begining; free of guilt.
+Application state vs UI state. Controlled vs uncontrolled components. Abstracting & reusing widgets. Give your forms that shot of steroids; free of guilt.
 
 You can easily find yourself having a hard time with forms right from the begining. Did you know you can even design forms in three different ways? Yay! Isn't that awesome?
 
