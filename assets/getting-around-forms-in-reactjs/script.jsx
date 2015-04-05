@@ -104,7 +104,7 @@ var EditableLabel1 = React.createClass({
       );
     } else {
       return (
-        <label onDoubleClick={this.props.displayInputHandler}>{this.props.text}</label>
+        <label onDoubleClick={this.props.enterEditModeHandler}>{this.props.text}</label>
       );
     }
   },
@@ -131,7 +131,7 @@ var List1 = React.createClass({
           <EditableLabel1
             editing={row.editing}
             text={row.text}
-            displayInputHandler={this._displayInput.bind(null, index)}
+            enterEditModeHandler={this._enterEditMode.bind(null, index)}
             saveHandler={this._save.bind(null, index)}
           />
         </li>
@@ -143,7 +143,7 @@ var List1 = React.createClass({
     );
   },
 
-  _displayInput: function(index) {
+  _enterEditMode: function(index) {
     var rows = this.state.rows;
     rows[index].editing = true;
     this.setState({rows: rows});
@@ -181,12 +181,12 @@ var EditableLabel2 = React.createClass({
       );
     } else {
       return (
-        <label onDoubleClick={this._displayInput}>{this.props.text}</label>
+        <label onDoubleClick={this._enterEditMode}>{this.props.text}</label>
       );
     }
   },
 
-  _displayInput: function() {
+  _enterEditMode: function() {
     this.setState({editing: true});
   },
 
@@ -233,4 +233,81 @@ var List2 = React.createClass({
 var mountNode5 = document.getElementById("sample5");
 var code5 = mountNode5.innerHTML;
 React.render(<Highlight code={code5}><List2 /></Highlight>, mountNode5);
+
+// ======== Sample 6 ========
+
+var Profile1 = React.createClass({
+  getInitialState: function() {
+    return {
+      username: this.props.initialUsername,
+      editing: false
+    };
+  },
+
+  render: function() {
+    if (this.state.editing) {
+      return (
+        <form>
+          <label>Username</label>
+          <input value={this.state.username} onChange={this._onChange} />
+          <button onClick={this._submit}>Submit</button>
+        </form>
+      );
+    } else {
+      return (
+        <a href="#" onClick={this._enterEditMode}>Edit Profile</a>
+      );
+    }
+  },
+
+  _onChange: function(event) {
+    var value = event.target.value;
+    this.setState({username: value});
+  },
+
+  _submit: function(event) {
+    event.preventDefault();
+    this.props.updateHandler(this.state.username);
+    this.setState({editing: false});
+  },
+
+  _enterEditMode: function(event) {
+    event.preventDefault();
+    this.setState({editing: true});
+  }
+});
+
+var Dashboard1 = React.createClass({
+  getInitialState: function() {
+    return {user: {username: 'John Doe'}};
+  },
+
+  render: function() {
+    return (
+      <div>
+        <div>Welcome <strong>{this.state.user.username}</strong></div>
+        <Profile1 initialUsername={this.state.user.username} updateHandler={this._updateUsername} />
+      </div>
+    );
+  },
+
+  _updateUsername: function(newUsername) {
+    var state = this.state;
+    state.user.username = this._ucwords(newUsername);
+    this.setState(state);
+  },
+
+  // borrowed from https://gist.github.com/4541395.git
+  _ucwords: function(str) {
+    str = str.toLowerCase();
+    return str.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
+      function(s){
+        return s.toUpperCase();
+    });
+  }
+});
+
+var mountNode6 = document.getElementById("sample6");
+var code6 = mountNode6.innerHTML;
+React.render(<Highlight code={code6}><Dashboard1 /></Highlight>, mountNode6);
 });

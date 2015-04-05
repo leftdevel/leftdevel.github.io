@@ -104,7 +104,7 @@ var EditableLabel1 = React.createClass({displayName: "EditableLabel1",
       );
     } else {
       return (
-        React.createElement("label", {onDoubleClick: this.props.displayInputHandler}, this.props.text)
+        React.createElement("label", {onDoubleClick: this.props.enterEditModeHandler}, this.props.text)
       );
     }
   },
@@ -131,7 +131,7 @@ var List1 = React.createClass({displayName: "List1",
           React.createElement(EditableLabel1, {
             editing: row.editing, 
             text: row.text, 
-            displayInputHandler: this._displayInput.bind(null, index), 
+            enterEditModeHandler: this._enterEditMode.bind(null, index), 
             saveHandler: this._save.bind(null, index)}
           )
         )
@@ -143,7 +143,7 @@ var List1 = React.createClass({displayName: "List1",
     );
   },
 
-  _displayInput: function(index) {
+  _enterEditMode: function(index) {
     var rows = this.state.rows;
     rows[index].editing = true;
     this.setState({rows: rows});
@@ -181,12 +181,12 @@ var EditableLabel2 = React.createClass({displayName: "EditableLabel2",
       );
     } else {
       return (
-        React.createElement("label", {onDoubleClick: this._displayInput}, this.props.text)
+        React.createElement("label", {onDoubleClick: this._enterEditMode}, this.props.text)
       );
     }
   },
 
-  _displayInput: function() {
+  _enterEditMode: function() {
     this.setState({editing: true});
   },
 
@@ -233,4 +233,81 @@ var List2 = React.createClass({displayName: "List2",
 var mountNode5 = document.getElementById("sample5");
 var code5 = mountNode5.innerHTML;
 React.render(React.createElement(Highlight, {code: code5}, React.createElement(List2, null)), mountNode5);
+
+// ======== Sample 6 ========
+
+var Profile1 = React.createClass({displayName: "Profile1",
+  getInitialState: function() {
+    return {
+      username: this.props.initialUsername,
+      editing: false
+    };
+  },
+
+  render: function() {
+    if (this.state.editing) {
+      return (
+        React.createElement("form", null, 
+          React.createElement("label", null, "Username"), 
+          React.createElement("input", {value: this.state.username, onChange: this._onChange}), 
+          React.createElement("button", {onClick: this._submit}, "Submit")
+        )
+      );
+    } else {
+      return (
+        React.createElement("a", {href: "#", onClick: this._enterEditMode}, "Edit Profile")
+      );
+    }
+  },
+
+  _onChange: function(event) {
+    var value = event.target.value;
+    this.setState({username: value});
+  },
+
+  _submit: function(event) {
+    event.preventDefault();
+    this.props.updateHandler(this.state.username);
+    this.setState({editing: false});
+  },
+
+  _enterEditMode: function(event) {
+    event.preventDefault();
+    this.setState({editing: true});
+  }
+});
+
+var Dashboard1 = React.createClass({displayName: "Dashboard1",
+  getInitialState: function() {
+    return {user: {username: 'John Doe'}};
+  },
+
+  render: function() {
+    return (
+      React.createElement("div", null, 
+        React.createElement("div", null, "Welcome ", React.createElement("strong", null, this.state.user.username)), 
+        React.createElement(Profile1, {initialUsername: this.state.user.username, updateHandler: this._updateUsername})
+      )
+    );
+  },
+
+  _updateUsername: function(newUsername) {
+    var state = this.state;
+    state.user.username = this._ucwords(newUsername);
+    this.setState(state);
+  },
+
+  // borrowed from https://gist.github.com/4541395.git
+  _ucwords: function(str) {
+    str = str.toLowerCase();
+    return str.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
+      function(s){
+        return s.toUpperCase();
+    });
+  }
+});
+
+var mountNode6 = document.getElementById("sample6");
+var code6 = mountNode6.innerHTML;
+React.render(React.createElement(Highlight, {code: code6}, React.createElement(Dashboard1, null)), mountNode6);
 });
