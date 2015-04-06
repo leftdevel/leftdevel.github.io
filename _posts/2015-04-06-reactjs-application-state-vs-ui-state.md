@@ -191,7 +191,7 @@ React.render(<List />, mountNode);
 {% endhighlight %}
 </div>
 
-I know you might be thinking this is the same mess. The numbers of lines didn't really change, however unnecessary cross-references between the components were reduced by 66%. Before, the List had to pass the `editing` property to EditableList as well as a handler to take care of entering in edit mode.
+I know you might be thinking this is the same mess. The numbers of lines didn't really change, however unnecessary cross-references between the components were reduced by 50%, the List now passes two property values instead of four. Before, the List had to pass the `editing` property to EditableList as well as a handler to take care of entering in edit mode.
 
 Notice we could have left the `editing` property in the List rows, while letting the EditableLabel to hold the `_enterEditMode` functionality, but `editing` is only a concern of the EditableLabel.
 
