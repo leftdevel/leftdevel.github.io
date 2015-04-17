@@ -96,7 +96,7 @@ Something to be careful about controlled components is that we can end up breaki
 var Profile = React.createClass({
   getInitialState: function() {
     return {
-      username: this.props.initialUsername, // antipattern
+      username: this.props.initialUsername, // anti-pattern
       editing: false
     };
   },
