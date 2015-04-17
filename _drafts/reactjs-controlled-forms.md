@@ -1,33 +1,12 @@
 ---
 layout: post
-title:  "ReactJS why forms are hard"
+title:  "ReactJS and controlled forms"
 date:   2015-04-15 15:00:00
 categories: reactjs forms
 ---
-Let's talk about controlled vs uncontrolled components and why gambling with them can be dangerous. Incorrect usage may lead to unexpected behaviors like  breaking the _single source of truth_ principle. Also, we will see different flavors to build forms.
+Let's talk about controlled vs uncontrolled components and why gambling with them can be dangerous. Incorrect usage may lead to unexpected behaviors like  breaking the _single source of truth_ principle.
 
-If you like plot twists I have a good one for you: React doesn't apply any magic to forms ... Wait for it ... But that's exactly what you might find unappealing.
-
-<a id="in-perspective"></a>
-
-### In Perspective [#](#in-perspective)
-
-For example, AngularJS is quite oppinionated about forms:
-
-* They get a shot of steroids by default, in fact the `<form>` tag is a built-in directive.
-* You get validation out of the box.
-* Metadata attributes like `pristine` and `dirty` are quite useful when handling certain scenarios.
-
-In ReactJS kindom, forms are treated as mere peasants. The difference is that we have no restrictions about the way we can handle complex scenarios, like nestings collection of forms inside other forms, or abstracting & reusing custom form components. This level of flexibility comes for free when the entire UI can be represented by the application state.
-
-For now we will just give an overview about avoiding common mistakes and bad architectural design.
-
-<a id="controlled-vs-uncontrolled-components"></a>
-
-### Controlled vs Uncontrolled Components [#](#controlled-vs-uncontrolled-components)
-
-First things first, let's see how they both differ from each other. Take a look to the following two components,
-they both achieve the same exact thing (open your browser's javascript console in order see the output).
+You may have already read about them in the [official docs][controlled-and-uncontrolled-components], but let's recap how they both differ from each other. Take a look to the following two form components, they both achieve the same exact thing (open your browser's javascript console in order see the output when clicking the submit button).
 
 **Uncontrolled**.
 
@@ -83,7 +62,7 @@ React.render(<SimpleForm />, mountNode);
 {% endhighlight %}
 </div>
 
-According to the [official documentation][controlled-and-uncontrolled-components], an input will be controlled whenever we declare the `value` attribute (as opposit of the uncontrolled component, which makes use of `defaultValue`). This let ReactJS take total control over the input.
+An input will be controlled whenever we declare the `value` attribute (as opposite to uncontrolled component, which makes use of `defaultValue`). This let ReactJS take total control over the input.
 
 The input value won't be updated if the component state is not updated. Try to comment out the `_onChange` method and you will notice that you won't be able to write in it, even though the `event` is still being fired.
 
@@ -104,11 +83,11 @@ This give us great flexibility, like the chance to pre-process the value, for ex
 
 Imagine that we are writing a chat application and we want to show a `John Doe is typing..` message to the other participants; that would be a breeze to achieve in the onChange handler. In practice, however, you will soon realize you won't always need such fine grained control.
 
-<a id="beware-mad-component"></a>
+<a id="beware-of-mad-component"></a>
 
-### Beware, mad component [#](#beware-mad-component)
+### Beware of mad component [#](#beware-of-mad-component)
 
-Something to be careful about controlled components is that you can end up breaking the _single source of truth_ principle. The following component let us update our full name and will apply a nice formatting, so if we enter "ivanNa HUMpalOT" it will be converted to "Ivanna Humpalot":
+Something to be careful about controlled components is that you can end up breaking the _single source of truth_ principle. The following component let us update our full name and will apply a nice formatting to it, so if we enter "ivanNa HUMpalOT" it will be converted to "Ivanna Humpalot":
 
 <div id="sample4">
 {% highlight js %}
@@ -189,11 +168,13 @@ Inadvertently we have broken  the _single source of truth_ principle, because th
 
 In our example, this issue might be easy to spot after one or  two re-reads, but in an app with many layers of sub-components, and with many historical refactors this bug will await patiently to show up in the worst moment. And believe me, this is hard to debug.
 
-Using a controlled input component implies adding an `onChange` handler and without a meaninful purpose it quickly becomes lousy code. If a controlled component achieves no more than an uncontrolled one, please save yourself from the hassle and use the latter.
+Using a controlled input component also implies adding an `onChange` handler and without a meaninful purpose it quickly becomes lousy code. If a controlled component achieves no more than an uncontrolled one, please save yourself from the hassle and use the latter.
 
 To avoid breaking the _single source of truth_ principle the rule of thumb is that an application data element should live in one and only one component state. If we need diferent representations of the same data, then the solution is - besides keeping it in a single state - to let other components to _decorate_ it only.
 
-**A better solution**
+<a id="a-better-solution"></a>
+
+### A better solution [#](#a-better-solution)
 
 <div id="sample5">
 {% highlight js %}
@@ -212,7 +193,7 @@ var Profile = React.createClass({
         ...
           // The username now comes from the props and not the state.
           // We've also removed the need for the username to be a
-          // controlled component. No more onChange handling.
+          // controlled component, so no more onChange handling.
           // The 'ref' will be used in the _submit handler
           <input ref="Username" defaultValue={this.props.initialUsername} />
         ...
@@ -273,18 +254,17 @@ React.render(<Dashboard />, mountNode);
 {% endhighlight %}
 </div>
 
-<!--
+Hopefully  the inline comments will point out the major changes in our code. In short, the Profile component no longers handles the username state, rather it's a channel between the end user and the Dashboard component. However notice the `editing` attribute is still being part of the Profile, maybe we agree that the Dashboard won't benefit at all from knowing about the inner cogs of the Profile.
+
+The value is being passed raw from the Profile to the Dashboard's `_updateUsername` handler, and is being saved raw into the state as well. The render method makes use of the _ucwords function to give the username a a better display representation on the fly.
+
 <a id="conclusion"></a>
 
 ### Conclusion [#](#conclusion)
 
-As we have seen there is a lot of boilerplate code to get a simple form fully working, and we haven't covered validation yet. The other side of the coin is that we have the opportunity to handle complex forms with ease, or ask the guys at [HipChat][hipchat].
+Controlled vs uncontrolled form components is a very simple concept, yet we may find ourselves failing to choose wisely if we are not careful enough to foresee big upcoming refactors where forms needs to be split into smaller and more abstract pieces.
 
-And yes, polish vodka is the best. Don't belive me? I'll be glad to talk to you about my awesome trip to Poland last year. If you have any questions about vodka or about this post let me know in the comments section below and I'll be happy to help.
-
-@TODO talk about when a component is controlled. If value is provided then there must be an onChange handler. Also if the prop or state is undefined the component is treated as uncontrolled.
-
--->
+Have you faced these issues at all? Please share your experience with forms in the comments sections below. Thanks for reading.
 
 [props-in-state]: https://facebook.github.io/react/tips/props-in-getInitialState-as-anti-pattern.html
 [controlled-and-uncontrolled-components]: https://facebook.github.io/react/docs/forms.html#controlled-components
