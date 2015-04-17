@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "ReactJS forms overview"
-date:   2015-04-14 15:00:00
-categories: reactjs state forms
+title:  "ReactJS forms validation"
+date:   2015-04-16 15:00:00
+categories: reactjs forms validation
 ---
 Controlled vs uncontrolled components and not breaking the single source of truth principle. Client side vs server side validation handling. And other things you should consider when building forms.
 
@@ -620,9 +620,9 @@ console.log(usernameValidator.errorMessage);
 
 Each custom constraint is pretty simple, they do one and only one thing. We don't care if all the constraints fails, we just want to return the error message of the first one that did.
 
-If we ever feel tempted to show more than one error message for a given input, that might be a symptom that our forms are unnecessary complex. Either our target users are pretty skilled with our app (which is rarely the case) or our forms are suffering from bad UX design.
+If we ever feel tempted to show more than one error message for a given input, that might be a symptom that our forms are unnecessary complex.
 
-Now that we have some very basic validation abstraction let's use it agains our form component.
+Now that we have some very basic validation abstraction let's use it against our form component.
 
 <div id="sample9">
 {% highlight js %}
