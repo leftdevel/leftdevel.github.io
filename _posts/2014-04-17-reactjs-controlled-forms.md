@@ -139,7 +139,7 @@ var Dashboard = React.createClass({
   render: function() {
     return (
       <div>
-        <div>Welcome <strong>{this.state.user.username}</strong></div>
+        <div>Welcome {this.state.user.username}</div>
         <Profile
           initialUsername={this.state.user.username}
           updateHandler={this._updateUsername} />
