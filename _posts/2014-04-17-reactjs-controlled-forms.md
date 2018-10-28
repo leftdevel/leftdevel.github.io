@@ -1,8 +1,12 @@
 ---
 layout: post
 title:  "ReactJS and controlled forms"
-date:   2015-04-17 04:00:00
+date:   2015-04-17 04:00:00 -0600
 categories: reactjs forms
+tags: [reactjs, forms]
+description: Controlled vs uncontrolled components. # Add post description (optional)
+img: react.jpg # Add image post (optional)
+fig-caption: # Add figcaption (optional)
 ---
 Let's talk about controlled vs uncontrolled components and why gambling with them can be dangerous. Incorrect usage may lead to unexpected behaviors like  breaking the _single source of truth_ principle.
 
@@ -10,7 +14,7 @@ You may have already read about them in the [official docs][controlled-and-uncon
 
 **Uncontrolled**.
 
-<div id="sample1">
+<div id="sample1" class="ignore-highlight-errors">
 {% highlight js %}
 var SimpleForm = React.createClass({
   render: function() {
@@ -34,7 +38,7 @@ React.render(<SimpleForm />, mountNode);
 
 **Controlled**.
 
-<div id="sample2">
+<div id="sample2" class="ignore-highlight-errors">
 {% highlight js %}
 var SimpleForm = React.createClass({
   getInitialState: function() {
@@ -68,7 +72,7 @@ The input value won't be updated if the component state is not updated. If we co
 
 This give us great flexibility, like the chance to pre-process the value, for example if we want to enforce upper case only and limit the length to five characters we can easily achieve that by refactoring the `onChange` method:
 
-<div id="sample3">
+<div id="sample3" class="ignore-highlight-errors">
 {% highlight js %}
   ...
   _onChange: function(event) {
@@ -89,7 +93,7 @@ Imagine that we are writing a chat application and we want to show a `John Doe i
 
 Something to be careful about controlled components is that we can end up breaking the _single source of truth_ principle. The following component let us update our full name and will apply a nice formatting to it, so if we enter "ivanNa HUMpalOT" it will be converted to "Ivanna Humpalot":
 
-<div id="sample4">
+<div id="sample4" class="ignore-highlight-errors">
 {% highlight js %}
 // PROFILE
 
@@ -176,7 +180,7 @@ To avoid breaking the _single source of truth_ principle the rule of thumb is th
 
 ### A better solution [#](#a-better-solution)
 
-<div id="sample5">
+<div id="sample5" class="ignore-highlight-errors">
 {% highlight js %}
 var Profile = React.createClass({
 

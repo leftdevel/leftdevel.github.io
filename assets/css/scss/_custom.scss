@@ -1,0 +1,55 @@
+.ignore-highlight-errors {
+  .highlight {
+    .err {
+      color: inherit;
+      background-color: inherit;
+    }
+  }
+}
+
+.tab-panel-group {
+    .panel {
+      display: none;
+
+      pre {
+        margin-top: 0px;
+      }
+  
+      &.on {
+        display: block;
+      }
+  
+      .demo {
+        width: 100%;
+        padding: 20px;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background-color: white;
+        border: none;
+  
+        form {
+          button {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  
+    .tab {
+      cursor: pointer;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      display: inline-block;
+      padding: 10px;
+      border: 1px solid #e8e8e8;
+      border-bottom: none;
+      width: 50%;
+      text-align: center;
+      color: #c2c0bc;
+      background-color: #f8f5ec;
+  
+      &.on {
+        color: #222;
+      }
+    }
+}
