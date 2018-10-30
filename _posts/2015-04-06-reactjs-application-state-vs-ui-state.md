@@ -2,7 +2,11 @@
 layout: post
 title:  "ReactJS application state vs UI state"
 date:   2015-04-06 04:05:00
-categories: reactjs state
+categories: reactjs
+tags: [reactjs, application state, UI state]
+description: Differences between app state and UI state. # Add post description (optional)
+img: react.jpg # Add image post (optional)
+fig-caption: # Add figcaption (optional)
 ---
 
 To the inexperienced eye, there are not many differences between a Jackson Pollock painting and a doodle. Telling what's relevant from what is ephemeral information in ReactJS is not an easy task either.
@@ -15,7 +19,7 @@ ReactJS components let us throw as much data as we want into their state. Howeve
 
 Say we have a MessageBox component that has three children components UnreadMessageCounter, MessageList and MessageComposer. We also have access to a MessageStore that will help us to fetch the necessary data about messages. The MessageBox would look something like this:
 
-<div>
+<div class="ignore-highlight-errors">
 {% highlight js %}
   var MessageBox = React.createClass({
     getInitialState: function() {
@@ -54,7 +58,7 @@ A good way to alleviate this is to make a distinction and separation between wha
 
 For example, we have an EditableLabel component that renders as a label but on double click it turns into an input, then on blur it turns again into a label displaying the updated value. We will hold three of them inside a List component.
 
-<div id="sample1">
+<div id="sample1" class="ignore-highlight-errors">
 {% highlight js %}
 var EditableLabel = React.createClass({
   componentDidUpdate: function() {
@@ -133,7 +137,7 @@ Maybe this would be acceptable if we needed to hook other features whenever we a
 
 Without a solid reason behind putting all the application data and functionality in the controller-view component we shouldn't be creating cross-references. Let's put the presentation layer code into the EditableLabel. Keep in mind the List will still be in charge of updating the values.
 
-<div id="sample2">
+<div id="sample2" class="ignore-highlight-errors">
 {% highlight js %}
 var EditableLabel = React.createClass({
   componentDidUpdate: function() {

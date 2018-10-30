@@ -2,7 +2,11 @@
 layout: post
 title:  "How I sold my soul to ReactJS"
 date:   2015-03-20 15:20:00
-categories: reactjs introduction
+categories: reactjs
+tags: [reactjs]
+description: reactjs overview. # Add post description (optional)
+img: react.jpg # Add image post (optional)
+fig-caption: # Add figcaption (optional)
 ---
 This is a quick introduction about my experience with ReactJS. I won't showcase any code today, however I believe it's worth reading, especially if you are unsure about giving ReactJS a go. Let's get started.
 

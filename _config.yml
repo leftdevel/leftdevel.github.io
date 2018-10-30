@@ -1,14 +1,35 @@
-# Site settings
 title: LeftDevel
-email: leftdevel@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Oscar's blog about web technologies and stuff.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://leftdevel.com" # the base hostname & protocol for your site
-twitter_username: leftdevel
-github_username:  leftdevel
+permalink: '/blog/:title/'
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://leftdevel.com" # the base hostname & protocol for your site, e.g. http://example.com
+site-twitter: #if your site has a twitter account, enter it here
 
-# Build settings
-#markdown: kramdown
-markdown: redcarpet
-permalink: /blog/:title
+# Author Settings
+author: Oscar Moya # add your name
+author-img: me.jpeg # add your photo
+about-author: I am a web developer focused on keeping your code clean and mown the bugs out of it. # add description
+social-twitter: leftdevel # add your Twitter handle
+social-facebook: # add your Facebook handle
+social-github: leftdevel # add your Github handle
+social-linkedin: www.linkedin.com/in/oscar-balladares-33300a4a # add your Linkedin handle
+social-email: leftdevel@gmail.com # add your Email address
+
+# Disqus
+discus-identifier: "leftdevel" # add your discus identifier
+
+# Tracker
+analytics: "UA-60981515-1" # Google Analytics
+
+# Build Settings
+markdown: kramdown
+plugins:
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jemoji
+
+paginate: 8
+paginate_path: "/page/:num"
+
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]

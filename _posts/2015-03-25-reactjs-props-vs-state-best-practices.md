@@ -2,7 +2,11 @@
 layout: post
 title:  "ReactJS Props vs State Best Practices"
 date:   2015-03-25 04:20:00
-categories: reactjs tutorial props state best practices
+categories: reactjs
+tags: [reactjs, tutorial, props, state, best practices]
+description: Managing data from props vs state. # Add post description (optional)
+img: react.jpg # Add image post (optional)
+fig-caption: # Add figcaption (optional)
 ---
 Misusing props & state is a guaranteed bomb of bugs that will cost you a lot of time to fix. In an app with few hundreds of lines of code the danger is not that visible, but once your  project grows the issues and headaches will strike all at once.
 
@@ -17,6 +21,7 @@ When I started learning ReactJS the first thing that made me scratch my head was
 We'll see why it's so easy to get confused. The following snippet is a slight modification of the first example in the ReactJS [landing page][landing_page],
 but instead of a HelloMessage component we will use a Counter:
 
+<div class="ignore-highlight-errors">
 {% highlight js %}
 /* Snippet 1 */
 var Counter = React.createClass({
@@ -27,9 +32,11 @@ var Counter = React.createClass({
 
 React.render(<Counter count={5} />, mountNode);
 {% endhighlight %}
+</div>
 
 Quite easy, right? What about if we do the same but using state instead:
 
+<div class="ignore-highlight-errors">
 {% highlight js %}
 /* Snippet 2 */
 var items = ['item1', 'item2', 'item3'];
@@ -46,6 +53,7 @@ var Counter = React.createClass({
 
 React.render(<Counter />, mountNode);
 {% endhighlight %}
+</div>
 
 Which one is the evil twin? Which one will peck out your eyes once your project gets bigger? In practice, both are correct and wrong depending on the context they are being used. Bear with me during the next ten minutes and I'll try my best to explain why.
 
@@ -58,6 +66,7 @@ I believe the confusion occurs because oversimplification. I won't blame it on t
 We'll build a TweetList component and a tweet impressions Counter little by little, so we can see why and when to use props & state. Let's justify the need for a Counter component by saying we want it to spell out the number of impressions, so for instance if we pass '1' it will display 'one', and so on.
 Our first attempt will be to build our components without the help of props nor state.
 
+<div class="ignore-highlight-errors">
 {% highlight js linenos %}
 /* Snippet 3 */
 var _tweet = {
@@ -89,6 +98,7 @@ var TweetItem = React.createClass({
   }
 });
 {% endhighlight %}
+</div>
 
 While this snippet of code is - hopefully - easy to read, you might have spotted a couple of horrible
 flaws. Can you smell it? It's roquefort.
@@ -105,6 +115,8 @@ Let's define some features that our Counter should have:
 
 The Flux architecture recommend us that only the outermost component in a hierarchy of components (called controller-view component) should handle a state, and pass it down to its children components through their props. This makes it easy to reason about where and when the view mutates. Whenever the state changes the controller-view component will re-run its render function, its children will receive the new props and will update accordingly in a domino effect.
  With those features in mind and that recommendation from above we conclude the Counter will hardly be used standalone, but within other components as a helper. In consequence it shouldn't handle any state but rely entirely on its props. So Let's refactor our code.
+
+<div class="ignore-highlight-errors">
 {% highlight js %}
 /* Snippet 4 */
 // ...
@@ -136,9 +148,11 @@ var TweetItem = React.createClass({
   }
 });
 {% endhighlight %}
+</div>
 
 Our Counter looks better now, and since the TweetItem is the outermost component, it will be the one in charge to handle the state. But we still have one issue left. The TweetItem is unlikely to be used standalone. We'll use it in the context of a tweet list, so it shouldn't handle state either. Let's fix this by refactoring TweetItem and creating TweetList.
 
+<div class="ignore-highlight-errors">
 {% highlight js %}
 /* Snippet 5 */
 // ...
@@ -185,6 +199,7 @@ var TweetList = React.createClass({
   }
 });
 {% endhighlight %}
+</div>
 
 It's looking much better now. The outermost component - TweetList - is handling the application state. In the `componentDidMount` method
 we are telling it to execute a jQuery ajax request to fetch the latest tweets and update its state on the request callback.
@@ -218,6 +233,7 @@ Our wonderful html layout would looks like this.
 
 As you can see, the Counter will be a controller-view by itself since it is the outermost component. We won't reuse it either, and its code will be pretty straight forward. I can already see the Bat-Signal telling us there is no other way, we must use state.
 
+<div class="ignore-highlight-errors">
 {% highlight js %}
 var UnreadMessagesCounter = React.createClass({
   getInitialState: function() {
@@ -249,6 +265,7 @@ $(document).ready(function() {
 });
 
 {% endhighlight %}
+</div>
 
 Hopefully the code is easy to understand. The component is pretty straight forward. We have no business logic
 in it, we leave that for an hypothetical messageStore. This how the store would work:
