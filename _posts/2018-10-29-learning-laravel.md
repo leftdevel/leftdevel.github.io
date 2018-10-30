@@ -3,7 +3,7 @@ layout: post
 title:  Learning Laravel
 date:   2018-10-29 18:00:00
 categories: laravel
-tags: [laravel, php]
+tags: [laravel, php, symfony]
 description: Learning Laravel from a Symfony developer perspective. # Add post description (optional)
 img: laravel.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
