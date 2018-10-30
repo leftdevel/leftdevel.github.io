@@ -29,7 +29,7 @@ I forgot to mention that I already started reading the Laravel docs and also did
 
 In my following posts I'll be comparing whatever I find interesting about a given Laravel feature with its counterpart in Symfony. In other words Learning Laravel from a Symfony developer's perspective.
 
-I'm pretty sure it will be fun. This time "I know what I don't know" about Laravel; in other words I already have a mental list of things that I'm curious about Laravel (routing, templating, security, database, services, etc). When I learned Symfony "I didn't know what I didn't know", in that regard it took me a while to discover and understand the value of lots of concepts that were new to me back then.
+I'm pretty sure it will be fun. This time "I know what I don't know" about Laravel; in other words I already have a mental list of things that I'm curious about Laravel: routing, templating, security, database, services, etc. When I learned Symfony "I didn't know what I didn't know", in that regard it took me a while to discover and understand the value of lots of concepts that were new to me back then.
 
 Do you have any advice, suggestion, or any other question? Let me know below in the comments section.
 
