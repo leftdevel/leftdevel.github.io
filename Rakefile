@@ -47,7 +47,7 @@ task :publish do
 
     if delete == 'y' then
         File.delete(draft)
-        puts "draft deleted. Bye."
+        puts "Draft deleted. Bye."
     else
         puts "Bye."
     end
